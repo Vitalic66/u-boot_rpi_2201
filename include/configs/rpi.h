@@ -123,9 +123,9 @@
 	"kernel_addr_r=0x00080000\0" \
 	"set_args=fdt addr ${fdt_addr} && fdt get value bootargs /chosen bootargs && " \
 		"setenv bootargs \"${bootargs} root=${mmcroot} rootwait\"\0" \
-	"set_root=if test \"${version}\" = 2; then setenv bootpart 0:3; setenv mmcroot /dev/mmcblk0p3; " \
-		"else setenv bootpart 0:2; setenv mmcroot /dev/mmcblk0p2; fi\0" \
-	"load=ext2load mmc ${bootpart} ${kernel_addr_r} /boot/zImage\0" \
+	"set_root=if test \"${version}\" = 2; then setenv bootpart 0:3; setenv mmcroot /dev/sda3; " \
+		"else setenv bootpart 0:2; setenv mmcroot /dev/sda2; fi\0" \
+	"load=ext2load usb ${bootpart} ${kernel_addr_r} /boot/zImage\0" \
 	"do_boot=bootz ${kernel_addr_r} - ${fdt_addr}\0"
 
 #define CONFIG_BOOTCOMMAND "run set_root set_args load do_boot"
